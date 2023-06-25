@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { ItemsTableComponent } from './items-table/items-table.component';
+import { AddItemsComponent } from './add-items/add-items.component';
 
 const routes: Routes = [{
   path: '',
@@ -17,6 +18,10 @@ const routes: Routes = [{
       redirectTo: 'items',
       pathMatch: 'full',
     },
+    {
+      path:'add-items',
+      component: AddItemsComponent,
+    }
   ],
 }];
 

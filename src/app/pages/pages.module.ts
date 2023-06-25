@@ -6,6 +6,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ItemstableModule } from './items-table/items-table.module';
+import { AddItemsModule } from './add-items/add-items.module';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { ItemstableModule } from './items-table/items-table.module';
     ThemeModule,
     NbMenuModule,
     ItemstableModule,
+    AddItemsModule,
   ],
   declarations: [
     PagesComponent,

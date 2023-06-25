@@ -107,10 +107,10 @@ export class DataService<T, E> {
       // tslint:disable-next-line:triple-equals
       if (error.status == 500) {
         res.code = error.status;
-        res.message = 'Sorry internal server error occured please try again later';
+        res.errors = 'Sorry internal server error occured please try again later';
       } else {
         res.code = error.status;
-        res.message = error.error.message;
+        res.errors = error.error.message;
        
       }
       return of(res);

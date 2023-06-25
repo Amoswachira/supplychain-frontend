@@ -7,5 +7,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/items',
     home: true,
   },
+  {
+    title: 'Add Item',
+    icon: 'plus-circle-outline',
+    link: '/pages/add-items',
+   
+  },
  
 ];
