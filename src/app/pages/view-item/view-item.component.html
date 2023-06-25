@@ -1,0 +1,157 @@
+<div class="card-row">
+    <div class="col-xxl-12">
+      <nb-card size="small" accent="success">
+        <nb-card-header>
+          Item
+        </nb-card-header>
+        <nb-card-body>
+          <div class="col-md-12 bar">
+            <h6 class="title-red">Item Details</h6>
+          </div>
+          <br>
+     
+          <form [formGroup]="itemModel" (ngSubmit)="onUpdateForm()" #createForm="ngForm" #form="ngForm" role="form">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label>Name<span class="my_span"> *</span></label>
+                    <input type="text" formControlName="name" name="name" class="form-control" required="required" pattern="[a-zA-Z][a-zA-Z ]+" >
+                    <div>
+                        <span class="text-danger" *ngIf="itemModel.get('name').invalid && itemModel.get('name').touched
+                                &&itemModel.get('name').errors.required">
+                          Name is required.
+                        </span>
+                        <span class="text-danger" *ngIf="itemModel.get('name').errors?.pattern">
+                         Name cannot contain space at beginning and only letters are allowed</span>
+      
+                      </div>
+                   
+                  </div>
+    
+                  <div class="form-group col-md-4">
+                    <label>Color</label>
+                    <input type="text" formControlName="color" name="color" class="form-control" >
+                   
+                  </div>
+    
+                  <div class="form-group col-md-4">
+                    <label>Price</label>
+                    <input type="number" formControlName="price" name="price" class="form-control" >
+                   
+                  </div>
+                 
+              </div>
+              <div style="float: right;">
+
+                <button type="submit" fullWidth [disabled]="!itemModel.valid" status="primary" nbButton>Update Item
+                </button>
+  
+              </div>
+          </form>
+
+        </nb-card-body>
+      </nb-card>
+        <nb-card size="giant" accent="primary">
+          <nb-card-header>
+            Item Events
+          </nb-card-header>
+       <nb-card-body>
+       
+          <div class="row">
+            <div class="col-lg">
+              <label>
+                <select
+                  name="datatable_length"
+                  aria-controls="datatable"
+                  class="form-control form-control-sm"
+                  (change)="entriesChange($event)">
+                  <option value="10" [selected]="entries==10">show 10 records</option>
+                  <option value="25" [selected]="entries==25">show 25 records</option>
+                  <option value="50" [selected]="entries==50">show 50 records</option>
+                  <option value="-1" [selected]="entries==-1">show All records</option>
+                </select>
+                
+                </label>
+               
+            </div>
+            <div class="col-sm">
+              
+              <label>
+                <input
+                  type="search"
+                  class="form-control form-control-sm"
+                  placeholder="Filter By location, custodian"
+                  aria-controls="datatable"
+                  (keyup)="filterDatatable($event)"
+                />
+              </label>
+          </div>
+          <div class="col-sm">
+            <label>
+             <button class="text-right"outline nbButton status="success" (click)="addEvent()"><nb-icon></nb-icon>Add Event</button>
+           </label>
+           </div>
+        </div>
+          <br>
+           <ngx-datatable
+                    #table
+                    class="material"
+                    [rows]="rows"
+                    [columnMode]="ColumnMode.force"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [rowHeight]="60"
+                    [loadingIndicator]="loadingIndicator"
+                    [limit]="entries != -1 ? entries:undefined"
+                    [selected]="selected"
+                    [selectionType]="SelectionType.checkbox"
+                  
+                  >
+                    <ngx-datatable-column
+                    [width]="30"
+                      [sortable]="false"
+                      [canAutoResize]="false"
+                      [draggable]="false"
+                      [resizeable]="false"
+                    >
+                      <ng-template
+                        ngx-datatable-header-template
+                        let-value="value"
+                        let-allRowsSelected="allRowsSelected"
+                        let-selectFn="selectFn"
+                      >
+                        <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)" />
+                      </ng-template>
+                      <ng-template
+                        ngx-datatable-cell-template
+                        let-value="value"
+                        let-isSelected="isSelected"
+                        let-onCheckboxChangeFn="onCheckboxChangeFn"
+                      >
+                        <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)" />
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Custodian">
+                      <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{value | titlecase}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    
+                    <ngx-datatable-column name="Location" prop="location">
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            {{value | titlecase}}
+                          </ng-template>
+                    </ngx-datatable-column>
+                
+                
+                   <ngx-datatable-column name="Date" prop="timestamp">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                      {{value  | date:'medium'}}
+                    </ng-template>
+                   </ngx-datatable-column>
+
+                  </ngx-datatable>
+          
+          </nb-card-body>
+        </nb-card>
+  </div>
+</div>

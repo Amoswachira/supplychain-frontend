@@ -1,7 +1,11 @@
 export class ResponseWrapper<T> {
-    code: number;
+    code: Number;
     data:T;
     errors:T;
+    name:String;
+    color:String;
+    price:Number;
+
 
   
   }

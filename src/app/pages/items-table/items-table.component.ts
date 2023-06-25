@@ -23,12 +23,7 @@ export class ItemsTableComponent implements OnInit {
   isButtonVisible = false;
 
 
-  inputParameters_alias: any;
-  inputParameters_values = [];
-  inputParameters_values_selected = [];
 
-  manufacturer_id: any;
-  report_id: any;
 
 
   showLoading = false;
@@ -60,32 +55,11 @@ export class ItemsTableComponent implements OnInit {
           this.rows = []
           this.loadingIndicator = false;
           // this.notify.showWarning(response.message);
-          this.toaster.showWarnToast('top-right', 'warning', response.message, 3000);
+          this.toaster.showWarnToast('top-right', 'warning',"failed to load data", 3000);
         }
       });
 
 
-  }
-
-  onSelect({ selected }) {
-    // console.log("Select Event<<<<<", selected, this.selected);
-
-    this.selected.splice(0, this.selected.length);
-    this.selected.push(...selected);
-
-    // console.log("Selected item bro<<<<<", selected);
-    this.isButtonVisible = true
-    this.inputParameters_values_selected = [];
-    // selected ids that are used to generate report
-    for (const values of selected) {
-      this.inputParameters_values_selected.push(values.id)
-    }
-
-    // The foolproof approach
-    // check if array does not exist, check if is not an array, or check if is empty
-    if (!Array.isArray(selected) || !selected.length) {
-      this.isButtonVisible = false
-    }
   }
 
 
@@ -117,7 +91,7 @@ export class ItemsTableComponent implements OnInit {
 
   viewById(value){
     console.log('this is the clicked ',value);
-    this.router.navigate(['/pages/add-page-here',{ 'id': value }]);
+    this.router.navigate(['/pages/view-item',{ 'id': value }]);
   }
 
 

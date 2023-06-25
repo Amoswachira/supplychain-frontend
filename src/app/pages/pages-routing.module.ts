@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { ItemsTableComponent } from './items-table/items-table.component';
 import { AddItemsComponent } from './add-items/add-items.component';
+import { ViewItemComponent } from './view-item/view-item.component';
 
 const routes: Routes = [{
   path: '',
@@ -21,6 +22,10 @@ const routes: Routes = [{
     {
       path:'add-items',
       component: AddItemsComponent,
+    },
+    {
+      path:'view-item',
+      component:ViewItemComponent,
     }
   ],
 }];
