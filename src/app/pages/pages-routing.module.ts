@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { ItemsTableComponent } from './items-table/items-table.component';
 import { AddItemsComponent } from './add-items/add-items.component';
 import { ViewItemComponent } from './view-item/view-item.component';
+import { AddEventComponent } from './add-event/add-event.component';
 
 const routes: Routes = [{
   path: '',
@@ -26,6 +27,10 @@ const routes: Routes = [{
     {
       path:'view-item',
       component:ViewItemComponent,
+    },
+    {
+      path:'add-event',
+      component:AddEventComponent,
     }
   ],
 }];
