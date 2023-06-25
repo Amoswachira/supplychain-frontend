@@ -3,7 +3,7 @@ FROM node:14 AS compile-image
 
 WORKDIR /opt/ng
 COPY  package.json  ./
-RUN npm install
+RUN yarn install --ignore-engines
 
 ENV PATH="./node_modules/.bin:$PATH" 
 
